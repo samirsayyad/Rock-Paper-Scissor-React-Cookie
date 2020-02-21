@@ -1,3 +1,5 @@
+
+This is React version of the Rock-Paper-Scissors game based on the tutorial at [youtube](https://www.youtube.com/watch?v=jaVNP3nIAv0) by [whatsdev](https://www.youtube.com/channel/UC0tRdbXVDbhaRvZPKsRgmxg)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
