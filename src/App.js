@@ -23,8 +23,11 @@ class App extends Component {
       { id: "rock", image: rock },
       { id: "paper", image: paper }
     ],
-    usertocomp_mode : true ,
-    comptocomp_mode : false,
+    playernName : {
+      compname : "Computer" ,
+      username : "User" ,
+    },
+    usertocomp_mode:true,
     resultmsg: "welcome"
   };
   resetGame =()=>{
@@ -39,6 +42,12 @@ class App extends Component {
       Cookies.set("compscore",0, {path: "/"});
     });
 
+  }
+  componentDidMount() {
+    this.interval = setInterval(() => this.modeChangeHandle(), 2000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
   getcomputerchoice = () => {
     const choicearray = ["rock", "paper", "scissor"];
@@ -165,6 +174,17 @@ class App extends Component {
     }, 400);
     console.log("draw");
   };
+  modeChangeHandle = () =>{
+    if (this.state.usertocomp_mode === false){
+        this.game(this.getcomputerchoice());
+    }
+  }
+  changeGameMode = () =>{
+    this.resetGame();
+    this.setState({
+      usertocomp_mode : !this.state.usertocomp_mode
+    })
+  }
   game = userchoice => {
     const computerchoice = this.getcomputerchoice();
 
@@ -187,10 +207,14 @@ class App extends Component {
     return (
       <div className="app">
         <Navbar />
-        <Scoreboard scores={this.state.scores} resetGame={this.resetGame} />
+        <Scoreboard mode={this.state.usertocomp_mode} 
+        scores={this.state.scores} 
+        resetGame={this.resetGame}
+        changeGameMode={this.changeGameMode} />
         <Result
           resultimages={this.state.resultimages}
           resultmsg={this.state.resultmsg}
+          mode={this.state.usertocomp_mode} 
         />
         <Choices choices={this.state.images} game={this.game} />
       </div>

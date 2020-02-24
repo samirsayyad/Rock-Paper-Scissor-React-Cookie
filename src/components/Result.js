@@ -4,10 +4,11 @@ class Result extends React.Component {
   render() {
     const { resultmsg } = this.props;
     const { resultimages } = this.props;
+    const { mode } = this.props;
     return (
       <div className="result">
         <div className="elem1" id="user">
-          <p>User</p>
+          <p>{(mode === true) ? "User" : "Computer"}</p>
           <img src={resultimages[0].image} alt="resultimage" id="user-img" />
         </div>
         <div className="elem1" id="welcome">
