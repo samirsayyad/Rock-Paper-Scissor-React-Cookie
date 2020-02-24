@@ -6,11 +6,11 @@ class Scoreboard extends React.Component {
     return (
       <div className="scoreboard">
           {(mode) ? <div id="user-label" className="badge">User</div>:
-           <div id="user-comp-label" className="badge">Computer</div> } 
+           <div id="user-comp-label" className="badge">Computer1</div> } 
 
         
         <div id="comp-label" className="badge">
-          Computer
+         {(mode) ?  "Computer" : "Computer2"}
         </div>
         <div id="reset-button" className="resetBadge" onClick={() =>
                   window.confirm("Are you sure you wish to reset game?") && this.props.resetGame()}>

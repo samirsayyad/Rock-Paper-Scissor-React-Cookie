@@ -23,10 +23,6 @@ class App extends Component {
       { id: "rock", image: rock },
       { id: "paper", image: paper }
     ],
-    playernName : {
-      compname : "Computer" ,
-      username : "User" ,
-    },
     usertocomp_mode:true,
     resultmsg: "welcome"
   };
@@ -77,7 +73,10 @@ class App extends Component {
       { id: userchoice, image: this.getimage(userchoice) },
       { id: computerchoice, image: this.getimage(computerchoice) }
     ];
-    const resultmsg = "YOU WIN";
+    var resultmsg = "YOU WIN";
+
+    if (!this.state.usertocomp_mode)
+      resultmsg = "COMPUTER1 WIN";
     
 
     this.setState({
@@ -121,7 +120,10 @@ class App extends Component {
       { id: userchoice, image: this.getimage(userchoice) },
       { id: computerchoice, image: this.getimage(computerchoice) }
     ];
-    const resultmsg = "YOU LOSE";
+    var resultmsg = "YOU LOSE";
+    if (!this.state.usertocomp_mode)
+      resultmsg = "COMPUTER2 WIN";
+  
     this.setState({
       images,
       resultimages,
@@ -156,7 +158,7 @@ class App extends Component {
       { id: userchoice, image: this.getimage(userchoice) },
       { id: computerchoice, image: this.getimage(computerchoice) }
     ];
-    const resultmsg = "ITS A DRAW";
+    var resultmsg = "ITS A DRAW";
     this.setState({
       images,
       resultimages,
