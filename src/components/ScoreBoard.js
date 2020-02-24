@@ -11,6 +11,10 @@ class Scoreboard extends React.Component {
         <div id="comp-label" className="badge">
           computer
         </div>
+        <div id="reset-button" className="resetBadge" onClick={() =>
+                  window.confirm("Are you sure you wish to reset game?") && this.props.resetGame()}>
+          Restart
+        </div>
         <span id="user-score">{scores[0].userscore}</span>:
         <span id="comp-score">{scores[1].compscore}</span>
       </div>

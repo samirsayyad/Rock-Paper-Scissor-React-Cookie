@@ -27,8 +27,15 @@ header h2 {
   font-family: "Oswald", sans-serif;
   position: relative;
 }
-.badge {
+.resetBadge {
   background: #e2584d;
+  color: white;
+  font-size: 14px;
+  padding: 2px 18px;
+  font-family: "Oswald", sans-serif;
+}
+.badge {
+  background: green;
   color: white;
   font-size: 14px;
   padding: 2px 18px;
@@ -43,6 +50,13 @@ header h2 {
   position: absolute;
   top: 30px;
   right: -50px;
+}
+#reset-button {
+  position: absolute;
+  top: -10px;
+  left: 60px;
+  cursor: pointer;
+
 }
 .result {
   font-size: 40px;

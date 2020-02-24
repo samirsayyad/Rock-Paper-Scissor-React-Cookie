@@ -23,8 +23,23 @@ class App extends Component {
       { id: "rock", image: rock },
       { id: "paper", image: paper }
     ],
+    usertocomp_mode : true ,
+    comptocomp_mode : false,
     resultmsg: "welcome"
   };
+  resetGame =()=>{
+    const scores = [
+      { userscore: 0 },
+      { compscore: 0}
+    ];
+    this.setState({
+      scores,
+    } ,()=>{
+      Cookies.set("userscore", 0, {path: "/"});
+      Cookies.set("compscore",0, {path: "/"});
+    });
+
+  }
   getcomputerchoice = () => {
     const choicearray = ["rock", "paper", "scissor"];
     const choice = Math.floor(Math.random() * 3);
@@ -172,7 +187,7 @@ class App extends Component {
     return (
       <div className="app">
         <Navbar />
-        <Scoreboard scores={this.state.scores} />
+        <Scoreboard scores={this.state.scores} resetGame={this.resetGame} />
         <Result
           resultimages={this.state.resultimages}
           resultmsg={this.state.resultmsg}
