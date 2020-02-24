@@ -7,15 +7,18 @@ import Choices from "./components/Choices";
 import rock from "./components/images/rock.png";
 import scissor from "./components/images/scissors.png";
 import paper from "./components/images/paper.png";
+import Cookies from 'js-cookie';
 
 class App extends Component {
+
   state = {
     images: [
       { id: "rock", image: rock, clicked: false },
       { id: "paper", image: paper, clicked: false },
       { id: "scissor", image: scissor, clicked: false }
     ],
-    scores: [{ userscore: 0 }, { compscore: 0 }],
+    scores: [{ userscore: parseInt(Cookies.get("userscore"))   || 0 }, 
+    { compscore:  parseInt(Cookies.get("compscore")) ||0 }],
     resultimages: [
       { id: "rock", image: rock },
       { id: "paper", image: paper }
@@ -51,12 +54,18 @@ class App extends Component {
       { id: computerchoice, image: this.getimage(computerchoice) }
     ];
     const resultmsg = "YOU WIN";
+    
+
     this.setState({
       images,
       resultimages,
       scores,
       resultmsg
-    });
+    } ,()=>{
+      Cookies.set("userscore", this.state.scores[0].userscore, {path: "/"});
+      Cookies.set("compscore",this.state.scores[1].compscore, {path: "/"});
+  
+    } )  
     setTimeout(() => {
       const images = this.state.images.map(image => {
         if (image.clicked) {
@@ -94,6 +103,10 @@ class App extends Component {
       resultimages,
       scores,
       resultmsg
+    } ,()=>{
+      Cookies.set("userscore", this.state.scores[0].userscore, {path: "/"});
+      Cookies.set("compscore",this.state.scores[1].compscore, {path: "/"});
+  
     });
     setTimeout(() => {
       const images = this.state.images.map(image => {
